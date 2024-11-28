@@ -1,0 +1,10 @@
+../Core/Src/led_display.c:4:6:SevenSegment_Init	32	static
+../Core/Src/led_display.c:20:6:SevenSegment_Display	24	static
+../Core/Src/led_display.c:35:6:SevenSegment_Clear	24	static
+../Core/Src/led_display.c:48:6:LED_Init	32	static
+../Core/Src/led_display.c:55:6:LED_On	16	static
+../Core/Src/led_display.c:59:6:LED_Off	16	static
+../Core/Src/led_display.c:63:6:LED_Toggle	16	static
+../Core/Src/led_display.c:67:6:LED_All_On	24	static
+../Core/Src/led_display.c:73:6:LED_All_Off	24	static
+../Core/Src/led_display.c:79:6:LED_All_Toggle	24	static

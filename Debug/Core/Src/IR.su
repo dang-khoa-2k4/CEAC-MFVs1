@@ -1,0 +1,2 @@
+../Core/Src/IR.c:3:6:IR_Init	24	static
+../Core/Src/IR.c:12:6:IR_update	16	static
