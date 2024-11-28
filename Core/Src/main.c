@@ -104,7 +104,6 @@ char rev[50];
 #define SET_NAME 5
 #define SET_ADDR 6
 #define CHECK_CONNECT 7
-//memset(rev, 0, sizeof(rev));
 
 PWMcontrol servo;
 PWMcontrol motor[2];
@@ -171,10 +170,13 @@ int main(void)
   MX_TIM4_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UART_Receive_IT(&huart3, (uint8_t *)rev, sizeof(rev));
  Scheduler_Init(&htim4);
 
+
 #ifdef TEST_BOARD
+  #ifdef TEST_BLE
+  HAL_UART_Receive_IT(&huart3, (uint8_t *)rev, sizeof(rev));
+  #endif
   #ifdef TEST_ULTRASONIC
     ultraSonic_Init(&sensor1, &htim2, &filter1, ECHO_L_GPIO_Port, ECHO_L_Pin);
     ultraSonic_Init(&sensor2, &htim2, &filter2, ECHO_M_GPIO_Port, ECHO_M_Pin);
@@ -211,18 +213,15 @@ int main(void)
   #endif
 #else
   // TODO: Add your code here
+  // JUST ADD TASKS TO THE SCHEDULER
+  // EXAMPLE: Scheduler_Add_Task(YOUR_VOID_FUNCTION(), 0, PERIOD_TO_TICK(10));
 #endif 
-	  // HAL_UART_Transmit(&huart3, (uint8_t *) (send[SET_ROLE_MASTER]), strlen(send[SET_ROLE_MASTER]), 5000);
-    // HAL_Delay(1000);
-    // HAL_UART_Transmit(&huart3, (uint8_t *) (send[SET_CONNECT]), strlen(send[SET_CONNECT]), 5000);
-    // HAL_Delay(1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  HAL_Delay(5000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -282,7 +281,9 @@ int main(void)
           {
             btn_state[i] = BUTTON_PRESSED;
              HAL_GPIO_TogglePin(ports_led[i], pins[i]);
+            #ifdef TEST_BLE
 	          HAL_UART_Transmit(&huart3, (uint8_t *) send_data[i], 1, 5000); 
+            #endif
           }
           break;
         case BUTTON_PRESSED:
@@ -309,7 +310,7 @@ int main(void)
     sw_buffer[1] = HAL_GPIO_ReadPin(SW_2_GPIO_Port, SW_2_Pin);
   #endif
 #else
-//  Scheduler_Dispatch_Tasks();
+  Scheduler_Dispatch_Tasks();
 #endif
   }
   /* USER CODE END 3 */

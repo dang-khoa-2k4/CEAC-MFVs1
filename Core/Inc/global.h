@@ -13,7 +13,7 @@
 #include "led_display.h"
 #include "input_reading.h"
 #include "scheduler.h"
-
+#include "communication.h" 
 // #define TEST_BOARD
 // #define TEST_MOTOR
 //#define TEST_SERVO
@@ -24,5 +24,5 @@
 // #define TEST_ENCODER
 // #define TEST_BTN
 // #define TEST_SW
-
+// #define TEST_BLE
 #endif
