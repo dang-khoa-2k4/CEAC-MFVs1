@@ -1,5 +1,5 @@
-#include "encoder.h"
-
+#include <encoder_ENCTIM.h>
+#ifndef _ENCODER_H_
 void TimerInitENC(TIM_HandleTypeDef *h_time, uint32_t Channel)
 {
     // Enable Output Compare Mode
@@ -40,7 +40,7 @@ void updateDiffPulse(Encoder *enc, int32_t *diffPulse)
  * and we need to divide the pulses counter by two, because
  * they include the pulses for both the channels
  */
-void updateEncoder(Encoder *enc, bool mode4X)
+void updateEncoder(Encoder *enc, int mode4X)
 {
     int32_t diffPulse = 0;
     updateDiffPulse(enc, &diffPulse);
@@ -67,3 +67,4 @@ void Encoder_Init(Encoder *p1, TIM_HandleTypeDef *h_time)
     if (HAL_TIM_Encoder_Start(p1->htim, TIM_CHANNEL_ALL) != HAL_OK)
         Error_Handler(); // write in main.c, maybe turn some led on?
 }
+#endif

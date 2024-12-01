@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <string.h>
+#include "encoder_IT.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,15 +74,15 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-char * send_command[8] = {  
-                    "AT", 
-                    "AT+VERSION", 
-                    "AT+ROLE=S", 
+char * send_command[8] = {
+                    "AT",
+                    "AT+VERSION",
+                    "AT+ROLE=S",
                     "AT+ROLE=M",
-                    "AT+CONT=0", 
-                    "AT+NAME=CEAC-MFV", 
-                    "AT+ADDR=XINCAMON1234", 
-                    "AT+CONT=?"           
+                    "AT+CONT=0",
+                    "AT+NAME=CEAC-MFV",
+                    "AT+ADDR=XINCAMON1234",
+                    "AT+CONT=?"
                   };
 char * send_data [] = {
   "w",
@@ -90,7 +90,7 @@ char * send_data [] = {
   "a",
   "d",
 };
-char rev[50];
+char rev[BUFFER_SIZE];
 
 #define FW 0
 #define BW 1
@@ -106,9 +106,7 @@ char rev[50];
 #define CHECK_CONNECT 7
 //memset(rev, 0, sizeof(rev));
 
-PWMcontrol servo;
-PWMcontrol motor[2];
-Encoder enc;
+//Encoder enc;
 ultraSonic sensor1;
 ultraSonic sensor2;
 ultraSonic sensor3;
@@ -139,6 +137,7 @@ LED led_array[NUMS_OF_SINGLE_LED];
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -172,7 +171,7 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_UART_Receive_IT(&huart3, (uint8_t *)rev, sizeof(rev));
- Scheduler_Init(&htim4);
+ Scheduler_Init();
 
 #ifdef TEST_BOARD
   #ifdef TEST_ULTRASONIC

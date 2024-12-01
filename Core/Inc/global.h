@@ -1,19 +1,6 @@
 #ifndef __GLOBAL_H
 #define __GLOBAL_H
-#include <stdbool.h>
-#include <stdint.h>
 #include "main.h"
-#include "average_filter.h"
-
-#include "ultraSonic.h"
-#include "encoder.h"
-#include "PID.h"
-#include "PWMcontrol.h"
-#include "IR.h"
-#include "led_display.h"
-#include "input_reading.h"
-#include "scheduler.h"
-
 // #define TEST_BOARD
 // #define TEST_MOTOR
 //#define TEST_SERVO
@@ -24,5 +11,8 @@
 // #define TEST_ENCODER
 // #define TEST_BTN
 // #define TEST_SW
+#define MESSAGE_SIZE 4
+#define BUFFER_SIZE 2
+extern char message[MESSAGE_SIZE];
 
 #endif

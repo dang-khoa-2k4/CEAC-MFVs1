@@ -1,7 +1,7 @@
 #ifndef PID_CONTROL_H_
 #define PID_CONTROL_H_
 
-#include "global.h"
+#include "main.h"
 
 #define MAX_INTEGRAL 20000000 //
 #define MAX_PID_VALUE 1000 // 

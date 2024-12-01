@@ -8,8 +8,11 @@
 #ifndef _PWM_CONTROL_H_
 #define _PWM_CONTROL_H_
 
-#include "global.h"
+#include "main.h"
 
+#define NO_OF_MOTOR 2
+#define MOTOR_L 0
+#define MOTOR_R 1
 #define SERVO_MAX_PULSE 1200  //ums
 #define SERVO_MIN_PULSE 250 //ums
 #define MAX_PULSE_WIDTH 1023  // tim->ARR
@@ -27,7 +30,8 @@ typedef struct
     uint16_t Channel1;
     uint16_t Channel2;
 } PWMcontrol;
-
+extern PWMcontrol servo;
+extern PWMcontrol motor[NO_OF_MOTOR];
 /**
   * @brief  Init Motor
   * @param  htim Timer handle of encoder module

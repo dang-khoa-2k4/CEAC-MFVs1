@@ -31,6 +31,18 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
+#include <string.h>
+#include <encoder_ENCTIM.h>
+#include <stdbool.h>
+#include "average_filter.h"
+#include "ultraSonic.h"
+#include "PID.h"
+#include "PWMcontrol.h"
+#include "IR.h"
+#include "led_display.h"
+#include "input_reading.h"
+#include "scheduler.h"
 #include "global.h"
 /* USER CODE END Includes */
 

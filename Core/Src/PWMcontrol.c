@@ -6,6 +6,9 @@
  */
 #include "PWMcontrol.h"
 
+PWMcontrol servo;
+PWMcontrol motor[NO_OF_MOTOR];
+
 void Motor_Init(PWMcontrol *PWMcontrol, TIM_HandleTypeDef *htim, uint32_t Channel1, uint32_t Channel2)
 {
     PWMcontrol->htim = htim;
@@ -58,14 +61,14 @@ void set_motor(PWMcontrol *PWMcontrol, int8_t direction, uint16_t PWM)
 
 void set_servo(PWMcontrol *PWMcontrol, uint16_t PWM)
 {
-    // if (PWM > SERVO_MAX_PULSE)
-    // {
-    //     PWM = SERVO_MAX_PULSE;
-    // }
-    // else if (PWM < SERVO_MIN_PULSE)
-    // {
-    //     PWM = SERVO_MIN_PULSE;
-    // }
+//     if (PWM > SERVO_MAX_PULSE)
+//     {
+//         PWM = SERVO_MAX_PULSE;
+//     }
+//     else if (PWM < SERVO_MIN_PULSE)
+//     {
+//         PWM = SERVO_MIN_PULSE;
+//     }
     __HAL_TIM_SET_COMPARE(PWMcontrol->htim, PWMcontrol->Channel1, PWM);
     return;
 }

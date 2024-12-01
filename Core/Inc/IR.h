@@ -1,7 +1,7 @@
 #ifndef _IR_SENSOR_
 #define _IR_SENSOR_
 
-#include "global.h"
+#include "main.h"
 
 #define NUMS_OF_IR 5
 

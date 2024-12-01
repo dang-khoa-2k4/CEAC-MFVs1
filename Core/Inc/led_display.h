@@ -1,7 +1,7 @@
 #ifndef SEVEN_SEGMENT_H
 #define SEVEN_SEGMENT_H
 
-#include "global.h"
+#include "main.h"
 
 #define NUMS_OF_SINGLE_LED 5 // Number of LEDs to control
 #define NUMS_OS_SEG 3 // Number of segments in a 7-segment display

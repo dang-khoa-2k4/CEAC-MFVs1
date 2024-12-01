@@ -1,6 +1,5 @@
 Core/Src/scheduler.o: ../Core/Src/scheduler.c ../Core/Inc/scheduler.h \
- ../Core/Inc/global.h ../Core/Inc/main.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+ ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -31,12 +30,11 @@ Core/Src/scheduler.o: ../Core/Src/scheduler.c ../Core/Inc/scheduler.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/average_filter.h ../Core/Inc/ultraSonic.h \
- ../Core/Inc/encoder.h ../Core/Inc/PID.h ../Core/Inc/PWMcontrol.h \
+ ../Core/Inc/encoder_ENCTIM.h ../Core/Inc/average_filter.h \
+ ../Core/Inc/ultraSonic.h ../Core/Inc/PID.h ../Core/Inc/PWMcontrol.h \
  ../Core/Inc/IR.h ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
- ../Core/Inc/scheduler.h
+ ../Core/Inc/scheduler.h ../Core/Inc/global.h
 ../Core/Inc/scheduler.h:
-../Core/Inc/global.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -69,12 +67,13 @@ Core/Src/scheduler.o: ../Core/Src/scheduler.c ../Core/Inc/scheduler.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+../Core/Inc/encoder_ENCTIM.h:
 ../Core/Inc/average_filter.h:
 ../Core/Inc/ultraSonic.h:
-../Core/Inc/encoder.h:
 ../Core/Inc/PID.h:
 ../Core/Inc/PWMcontrol.h:
 ../Core/Inc/IR.h:
 ../Core/Inc/led_display.h:
 ../Core/Inc/input_reading.h:
 ../Core/Inc/scheduler.h:
+../Core/Inc/global.h:

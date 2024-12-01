@@ -1,7 +1,7 @@
-#ifndef _ENCODER_H_
 #define _ENCODER_H_
+#ifndef _ENCODER_H_
 
-#include "global.h"
+#include "main.h"
 
 #define NUMS_OF_ENC 2
 
@@ -35,6 +35,6 @@ void Encoder_Init(Encoder *p1, TIM_HandleTypeDef *h_time);
 */
 void TimerInitENC(TIM_HandleTypeDef *h_time, uint32_t Channel);
 
-void updateEncoder(Encoder *enc, bool mode4X);
+void updateEncoder(Encoder *enc, int mode4X);
 
 #endif

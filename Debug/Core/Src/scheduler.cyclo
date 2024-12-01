@@ -1,7 +1,6 @@
-../Core/Src/scheduler.c:13:6:Scheduler_Init	1
-../Core/Src/scheduler.c:19:17:Get_New_Task_ID	1
-../Core/Src/scheduler.c:26:6:Scheduler_Update	5
-../Core/Src/scheduler.c:35:10:Scheduler_Add_Task	8
-../Core/Src/scheduler.c:109:6:Scheduler_Dispatch_Tasks	4
-../Core/Src/scheduler.c:120:9:Scheduler_Remove_Task	5
-../Core/Src/scheduler.c:145:10:freq_to_tick	2
+../Core/Src/scheduler.c:10:5:is_avail	1
+../Core/Src/scheduler.c:13:6:Scheduler_Init	3
+../Core/Src/scheduler.c:28:10:Scheduler_Add_Task	11
+../Core/Src/scheduler.c:78:6:Scheduler_Update	3
+../Core/Src/scheduler.c:87:6:Scheduler_Dispatch_Tasks	4
+../Core/Src/scheduler.c:103:9:Scheduler_Remove_Task	5
