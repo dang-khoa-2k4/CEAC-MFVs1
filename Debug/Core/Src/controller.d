@@ -30,10 +30,11 @@ Core/Src/controller.o: ../Core/Src/controller.c ../Core/Inc/controller.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/encoder_ENCTIM.h ../Core/Inc/average_filter.h \
- ../Core/Inc/ultraSonic.h ../Core/Inc/PID.h ../Core/Inc/PWMcontrol.h \
- ../Core/Inc/IR.h ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
- ../Core/Inc/scheduler.h ../Core/Inc/global.h ../Core/Inc/encoder_IT.h
+ ../Core/Inc/encoder_ENCTIM.h ../Core/Inc/encoder_IT.h \
+ ../Core/Inc/PWMcontrol.h ../Core/Inc/average_filter.h \
+ ../Core/Inc/ultraSonic.h ../Core/Inc/PID.h ../Core/Inc/IR.h \
+ ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
+ ../Core/Inc/scheduler.h ../Core/Inc/global.h
 ../Core/Inc/controller.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -68,13 +69,13 @@ Core/Src/controller.o: ../Core/Src/controller.c ../Core/Inc/controller.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Core/Inc/encoder_ENCTIM.h:
+../Core/Inc/encoder_IT.h:
+../Core/Inc/PWMcontrol.h:
 ../Core/Inc/average_filter.h:
 ../Core/Inc/ultraSonic.h:
 ../Core/Inc/PID.h:
-../Core/Inc/PWMcontrol.h:
 ../Core/Inc/IR.h:
 ../Core/Inc/led_display.h:
 ../Core/Inc/input_reading.h:
 ../Core/Inc/scheduler.h:
 ../Core/Inc/global.h:
-../Core/Inc/encoder_IT.h:

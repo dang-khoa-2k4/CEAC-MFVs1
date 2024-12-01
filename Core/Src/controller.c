@@ -46,7 +46,9 @@ void CEAC_BLE_Proc() {
 		case 'd':
 			right++;
 			break;
-		default:
+		default: // reset state
+			forward = 0, backward = 0, left = 0, right = 0;
+			break;
 		}
 	}
 

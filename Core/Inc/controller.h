@@ -20,4 +20,7 @@
 #define SERVO_CENTER map(90, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
 #define SERVO_RIGHT map(135, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
 
+void CEAC_BLE_Rev(char *buffer);
+void CEAC_BLE_Proc();
+
 #endif /* INC_CONTROLLER_H_ */
