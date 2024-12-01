@@ -32,6 +32,7 @@ void CEAC_BLE_Rev(char *buffer) {
 
 void CEAC_BLE_Proc() {
 	int forward = 0, backward = 0, left = 0, right = 0;
+	int reset_flag = 0;
 	for (int i = 0; i < MESSAGE_SIZE; i++) {
 		switch (message[i]) {
 		case 'w':
@@ -47,8 +48,11 @@ void CEAC_BLE_Proc() {
 			right++;
 			break;
 		default: // reset state
-			forward = 0, backward = 0, left = 0, right = 0;
+			reset_flag = 1;
 			break;
+		}
+		if (reset_flag) {
+			forward = 0, backward = 0, left = 0, right = 0;
 		}
 	}
 
