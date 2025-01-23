@@ -11,7 +11,7 @@
 // #define TEST_ENCODER
 // #define TEST_BTN
 // #define TEST_SW
-#define MESSAGE_SIZE 4
+#define MESSAGE_SIZE 50
 #define BUFFER_SIZE 2
 extern char message[MESSAGE_SIZE];
 

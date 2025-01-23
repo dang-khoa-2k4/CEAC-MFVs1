@@ -34,7 +34,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/PWMcontrol.h ../Core/Inc/average_filter.h \
  ../Core/Inc/ultraSonic.h ../Core/Inc/PID.h ../Core/Inc/IR.h \
  ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
- ../Core/Inc/scheduler.h ../Core/Inc/global.h ../Core/Inc/controller.h
+ ../Core/Inc/scheduler.h ../Core/Inc/global.h ../Core/Inc/CEAC_BLE.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -79,4 +79,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/input_reading.h:
 ../Core/Inc/scheduler.h:
 ../Core/Inc/global.h:
-../Core/Inc/controller.h:
+../Core/Inc/CEAC_BLE.h:

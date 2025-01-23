@@ -10,9 +10,7 @@
 
 #include "main.h"
 
-#define NO_OF_MOTOR 2
-#define MOTOR_L 0
-#define MOTOR_R 1
+#define NO_OF_MOTOR 1
 #define SERVO_MAX_PULSE 1200  //ums
 #define SERVO_MIN_PULSE 250 //ums
 #define MAX_PULSE_WIDTH 1023  // tim->ARR

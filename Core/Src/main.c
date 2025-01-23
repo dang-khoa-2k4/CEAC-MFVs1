@@ -18,10 +18,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <CEAC_BLE.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "controller.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,10 +74,12 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#ifdef TEST_BTN
 char *send_command[8] = { "AT", "AT+VERSION", "AT+ROLE=S", "AT+ROLE=M",
 		"AT+CONT=0", "AT+NAME=CEAC-MFV", "AT+ADDR=XINCAMON1234", "AT+CONT=?" };
 char *send_data[] = { "w", "s", "a", "d", };
 char rev[BUFFER_SIZE];
+#endif
 
 #define FW 0
 #define BW 1
@@ -103,17 +105,17 @@ average_filter filter2;
 average_filter filter3;
 IR ir;
 GPIO_TypeDef *ports_led[NUMS_OF_SINGLE_LED] = { GPIOA, GPIOA, GPIOA, GPIOA,
-		GPIOA };
+GPIOA };
 uint16_t pins[NUMS_OF_SINGLE_LED] = { GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10,
-		GPIO_PIN_11, GPIO_PIN_12 };
+GPIO_PIN_11, GPIO_PIN_12 };
 
 GPIO_TypeDef *le_ports[NUMS_OS_SEG] = { GPIOB, GPIOE, GPIOD };
 uint16_t le_pins[NUMS_OS_SEG] = { GPIO_PIN_2, GPIO_PIN_11, GPIO_PIN_8 };
 
 GPIO_TypeDef *ports_seg[NUMS_OS_SEG] = { GPIOE, GPIOE, GPIOB };
 uint16_t pins_seg[NUMS_OS_SEG][4] = { { GPIO_PIN_7, GPIO_PIN_8, GPIO_PIN_9,
-		GPIO_PIN_10 }, { GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 }, {
-		GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 } };
+GPIO_PIN_10 }, { GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 }, {
+GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 } };
 SevenSegment_t seg[NUMS_OS_SEG];
 LED led_array[NUMS_OF_SINGLE_LED];
 /* USER CODE END 0 */
@@ -156,7 +158,7 @@ int main(void) {
 	MX_TIM4_Init();
 	MX_USART3_UART_Init();
 	/* USER CODE BEGIN 2 */
-	HAL_UART_Receive_IT(&huart3, (uint8_t*) rev, sizeof(rev));
+//	HAL_UART_Receive_IT(&huart3, (uint8_t*) rev, sizeof(rev));
 	Scheduler_Init();
 
 #ifdef TEST_BOARD
@@ -206,8 +208,7 @@ int main(void) {
 	/* Infinite loop */
 	/* USER CODE BEGIN WHILE */
 	while (1) {
-		CEAC_BLE_Proc();
-//	  HAL_Delay(5000);
+
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
@@ -294,7 +295,7 @@ int main(void) {
     sw_buffer[1] = HAL_GPIO_ReadPin(SW_2_GPIO_Port, SW_2_Pin);
   #endif
 #else
-//  Scheduler_Dispatch_Tasks();
+		Scheduler_Dispatch_Tasks();
 #endif
 	}
 	/* USER CODE END 3 */
@@ -816,7 +817,7 @@ static void MX_GPIO_Init(void) {
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOB,
-			GPIO_PIN_2 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15,
+	GPIO_PIN_2 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15,
 			GPIO_PIN_RESET);
 
 	/*Configure GPIO pin Output Level */
@@ -830,8 +831,7 @@ static void MX_GPIO_Init(void) {
 
 	/*Configure GPIO pin Output Level */
 	HAL_GPIO_WritePin(GPIOA,
-			LED_1_Pin | LED_2_Pin | LED_3_Pin | LED_4_Pin | LED_5_Pin,
-			GPIO_PIN_RESET);
+	LED_1_Pin | LED_2_Pin | LED_3_Pin | LED_4_Pin | LED_5_Pin, GPIO_PIN_RESET);
 
 	/*Configure GPIO pins : BTN_2_Pin BTN_3_Pin BTN_4_Pin */
 	GPIO_InitStruct.Pin = BTN_2_Pin | BTN_3_Pin | BTN_4_Pin;
@@ -905,15 +905,6 @@ static void MX_GPIO_Init(void) {
 }
 
 /* USER CODE BEGIN 4 */
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-	if (huart->Instance == USART3) {
-//    HAL_GPIO_TogglePin(LED_1_GPIO_Port, LED_1_Pin);
-		CEAC_BLE_Rev(rev);
-		HAL_UART_Receive_IT(&huart3, (uint8_t*) rev, sizeof(rev));
-
-	}
-}
 
 // #if defined(TEST_ULTRASONIC) || defined(TEST_ENCODER)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {

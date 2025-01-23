@@ -5,22 +5,20 @@
  *      Author: HP
  */
 
-#ifndef INC_CONTROLLER_H_
-#define INC_CONTROLLER_H_
+#ifndef INC_CEAC_BLE_H_
+#define INC_CEAC_BLE_H_
 
 #include "main.h"
-#include "PWMcontrol.h"
-#include "encoder_IT.h"
 
-#define BLE_MODE_1 100
-#define BLE_MODE_2 255
-#define BLE_MODE_3 500
-#define TURN_ADJUSTMENT 50
+#define PWM_MODE_1 100
+#define PWM_MODE_2 255
+#define PWM_MODE_3 500
 #define SERVO_LEFT map(45, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
 #define SERVO_CENTER map(90, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
 #define SERVO_RIGHT map(135, 0, 180, SERVO_MIN_PULSE, SERVO_MAX_PULSE)
 
-void CEAC_BLE_Rev(char *buffer);
-void CEAC_BLE_Proc();
+void ctrller_Init(UART_HandleTypeDef *UART_pointer);
+void ctrller_Rev(char *buffer);
+void ctrller_run();
 
-#endif /* INC_CONTROLLER_H_ */
+#endif /* INC_CEAC_BLE_H_ */
