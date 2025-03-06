@@ -162,40 +162,44 @@ int main(void) {
 	Scheduler_Init();
 
 #ifdef TEST_BOARD
-  #ifdef TEST_ULTRASONIC
-    ultraSonic_Init(&sensor1, &htim2, &filter1, ECHO_L_GPIO_Port, ECHO_L_Pin);
-    ultraSonic_Init(&sensor2, &htim2, &filter2, ECHO_M_GPIO_Port, ECHO_M_Pin);
-    ultraSonic_Init(&sensor3, &htim2, &filter3, ECHO_R_GPIO_Port, ECHO_R_Pin);
-  #endif
-  #ifdef TEST_SERVO
-    Servo_Init(&servo, &htim10, TIM_CHANNEL_1, 750);
-  #endif
-  #ifdef TEST_MOTOR
-    Motor_Init(&motor[0], &htim8, TIM_CHANNEL_1, TIM_CHANNEL_2);
-    Motor_Init(&motor[1], &htim8, TIM_CHANNEL_3, TIM_CHANNEL_4);
-  #endif
-  #ifdef TEST_ENCODER
-    Encoder_Init(&enc, &htim3);
-  #endif
-  #ifdef TEST_IR
-    IR_Init(&ir, &hadc1);
-  #endif
-  #ifdef TEST_SINGLE_LED
-    LED_Init(led_array, ports_led, pins);
-  #endif
-  #ifdef TEST_7_SEG
-    for (int i = 0; i < NUMS_OS_SEG; i++)
-      SevenSegment_Init(&seg[i], ports_seg[i], pins_seg[i], le_ports[i], le_pins[i]);
-    HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
-  #endif
-  #ifdef TEST_BTN
-    LED_Init(led_array, ports_led, pins);
-    uint8_t btn_state[N0_OF_BUTTONS] = { BUTTON_RELEASED };
-    Scheduler_Add_Task(button_reading, 0, PERIOD_TO_TICK(10));
-  #endif
-  #ifdef TEST_SW
-    uint8_t sw_buffer[2] = {0, 0};
-  #endif
+#ifdef TEST_BLE
+	ctrller_Init(&huart3);
+#endif
+#ifdef TEST_ULTRASONIC
+	ultraSonic_Init(&sensor1, &htim2, &filter1, ECHO_L_GPIO_Port, ECHO_L_Pin);
+	ultraSonic_Init(&sensor2, &htim2, &filter2, ECHO_M_GPIO_Port, ECHO_M_Pin);
+	ultraSonic_Init(&sensor3, &htim2, &filter3, ECHO_R_GPIO_Port, ECHO_R_Pin);
+#endif
+#ifdef TEST_SERVO
+	Servo_Init(&servo, &htim10, TIM_CHANNEL_1, 750);
+#endif
+#ifdef TEST_MOTOR
+	Motor_Init(&motor[0], &htim8, TIM_CHANNEL_1, TIM_CHANNEL_2);
+	Motor_Init(&motor[1], &htim8, TIM_CHANNEL_3, TIM_CHANNEL_4);
+#endif
+#ifdef TEST_ENCODER
+	Encoder_Init(&enc, &htim3);
+#endif
+#ifdef TEST_IR
+	IR_Init(&ir, &hadc1);
+#endif
+#ifdef TEST_SINGLE_LED
+	LED_Init(led_array, ports_led, pins);
+#endif
+#ifdef TEST_7_SEG
+	for (int i = 0; i < NUMS_OS_SEG; i++)
+		SevenSegment_Init(&seg[i], ports_seg[i], pins_seg[i], le_ports[i],
+				le_pins[i]);
+	HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
+#endif
+#ifdef TEST_BTN
+	LED_Init(led_array, ports_led, pins);
+	uint8_t btn_state[N0_OF_BUTTONS] = { BUTTON_RELEASED };
+	Scheduler_Add_Task(button_reading, 0, PERIOD_TO_TICK(10));
+#endif
+#ifdef TEST_SW
+	uint8_t sw_buffer[2] = { 0, 0 };
+#endif
 #else
 	// TODO: Add your code here
 #endif 
@@ -213,87 +217,83 @@ int main(void) {
 
 		/* USER CODE BEGIN 3 */
 #ifdef TEST_BOARD
-  #ifdef TEST_MOTOR
-      set_motor(&motor[0], FORWARD, 500);
-      set_motor(&motor[1], FORWARD, 500);
-      HAL_Delay(3000);
-      set_motor(&motor[0], STOP, 0);
-      set_motor(&motor[1], STOP, 0);
-      HAL_Delay(3000);
-      set_motor(&motor[0], BACKWARD, 500);
-      set_motor(&motor[1], BACKWARD, 500);
-      HAL_Delay(3000);
-  #endif
-  #ifdef TEST_SERVO
-    set_servo(&servo, SERVO_MAX_PULSE);
-    HAL_Delay(3000);
-    set_servo(&servo, SERVO_MIN_PULSE);
-    HAL_Delay(3000);
-  #endif
-  #ifdef TEST_7_SEG
-      for (int i = 8; i < 10;)
-      {
-        SevenSegment_Display(&seg[0], i);
-        SevenSegment_Display(&seg[1], i);
-        SevenSegment_Display(&seg[2], i);
-        HAL_Delay(1000);
-      }
-  #endif
-  #ifdef TEST_SINGLE_LED
-      LED_All_On(&led_array);
-      HAL_Delay(1000);
-  #endif
-  #ifdef TEST_IR
-      IR_update(&ir);
-      // HAL_Delay(10);
-  #endif
-  #ifdef TEST_ULTRASONIC
-      ultraSonic_Read(&sensor1);
-      ultraSonic_Read(&sensor2);
-      ultraSonic_Read(&sensor3);
-      HAL_Delay(100);
-  #endif
-  #ifdef TEST_ENCODER
-      updateEncoder(&enc, true);
-      HAL_Delay(100); 
-  #endif
-  #ifdef TEST_BTN
-    Scheduler_Dispatch_Tasks();
-    for (int i = 0; i < N0_OF_BUTTONS; i++)
-    {
-      switch (btn_state[i])
-      {
-        case BUTTON_RELEASED:
-          if (is_button_pressed(i))
-          {
-            btn_state[i] = BUTTON_PRESSED;
-             HAL_GPIO_TogglePin(ports_led[i], pins[i]);
-	          HAL_UART_Transmit(&huart3, (uint8_t *) send_data[i], 1, 5000); 
-          }
-          break;
-        case BUTTON_PRESSED:
-          if (is_button_pressed_1s(i))
-          {
-            btn_state[i] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
-          }
-          else if (!is_button_pressed(i))
-          {
-            btn_state[i] = BUTTON_RELEASED;
-          }
-          break;
-        case BUTTON_PRESSED_MORE_THAN_1_SECOND:
-          if (!is_button_pressed(i))
-          {
-            btn_state[i] = BUTTON_RELEASED;
-          }
-          break;
-      }    
-    }
-  #endif
-  #ifdef TEST_SW
-    sw_buffer[0] = HAL_GPIO_ReadPin(SW_1_GPIO_Port, SW_1_Pin);
-    sw_buffer[1] = HAL_GPIO_ReadPin(SW_2_GPIO_Port, SW_2_Pin);
-  #endif
+#ifdef TEST_BLE
+		ctrller_run();
+#endif
+#ifdef TEST_MOTOR
+		set_motor(&motor[0], FORWARD, 500);
+		set_motor(&motor[1], FORWARD, 500);
+		HAL_Delay(3000);
+		set_motor(&motor[0], STOP, 0);
+		set_motor(&motor[1], STOP, 0);
+		HAL_Delay(3000);
+		set_motor(&motor[0], BACKWARD, 500);
+		set_motor(&motor[1], BACKWARD, 500);
+		HAL_Delay(3000);
+#endif
+#ifdef TEST_SERVO
+		set_servo(&servo, SERVO_MAX_PULSE);
+		HAL_Delay(3000);
+		set_servo(&servo, SERVO_MIN_PULSE);
+		HAL_Delay(3000);
+#endif
+#ifdef TEST_7_SEG
+		for (int i = 8; i < 10;) {
+			SevenSegment_Display(&seg[0], i);
+			SevenSegment_Display(&seg[1], i);
+			SevenSegment_Display(&seg[2], i);
+			HAL_Delay(1000);
+		}
+#endif
+#ifdef TEST_SINGLE_LED
+		LED_All_On(&led_array);
+		HAL_Delay(1000);
+#endif
+#ifdef TEST_IR
+		IR_update(&ir);
+		// HAL_Delay(10);
+#endif
+#ifdef TEST_ULTRASONIC
+		ultraSonic_Read(&sensor1);
+		ultraSonic_Read(&sensor2);
+		ultraSonic_Read(&sensor3);
+		HAL_Delay(100);
+#endif
+#ifdef TEST_ENCODER
+		updateEncoder(&enc, true);
+		HAL_Delay(100);
+#endif
+#ifdef TEST_BTN
+		Scheduler_Dispatch_Tasks();
+		for (int i = 0; i < N0_OF_BUTTONS; i++) {
+			switch (btn_state[i]) {
+			case BUTTON_RELEASED:
+				if (is_button_pressed(i)) {
+					btn_state[i] = BUTTON_PRESSED;
+					HAL_GPIO_TogglePin(ports_led[i], pins[i]);
+					HAL_UART_Transmit(&huart3, (uint8_t*) send_data[i], 1,
+							5000);
+				}
+				break;
+			case BUTTON_PRESSED:
+				if (is_button_pressed_1s(i)) {
+					btn_state[i] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+				} else if (!is_button_pressed(i)) {
+					btn_state[i] = BUTTON_RELEASED;
+				}
+				break;
+			case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+				if (!is_button_pressed(i)) {
+					btn_state[i] = BUTTON_RELEASED;
+				}
+				break;
+			}
+		}
+#endif
+#ifdef TEST_SW
+		sw_buffer[0] = HAL_GPIO_ReadPin(SW_1_GPIO_Port, SW_1_Pin);
+		sw_buffer[1] = HAL_GPIO_ReadPin(SW_2_GPIO_Port, SW_2_Pin);
+#endif
 #else
 		Scheduler_Dispatch_Tasks();
 #endif
