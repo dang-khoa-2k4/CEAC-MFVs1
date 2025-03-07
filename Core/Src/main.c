@@ -74,39 +74,7 @@ static void MX_USART3_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-char * send_command[8] = {  
-                    "AT", 
-                    "AT+VERSION", 
-                    "AT+ROLE=S", 
-                    "AT+ROLE=M",
-                    "AT+CONT=0", 
-                    "AT+NAME=CEAC-MFV", 
-                    "AT+ADDR=XINCAMON1234", 
-                    "AT+CONT=?"           
-                  };
-char * send_data [] = {
-  "w",
-  "s",
-  "a",
-  "d",
-};
-char rev[50];
-
-#define FW 0
-#define BW 1
-#define LEFT 2
-#define RIGHT 3
-#define TEST_COMMAND 0
-#define CHECK_VERSION 1
-#define SET_ROLE_SLAVE 2
-#define SET_ROLE_MASTER 3
-#define SET_CONNECT 4
-#define SET_NAME 5
-#define SET_ADDR 6
-#define CHECK_CONNECT 7
-
-PWMcontrol servo;
-PWMcontrol motor[2];
+HC08 hc08;
 Encoder enc;
 ultraSonic sensor1;
 ultraSonic sensor2;
@@ -116,20 +84,6 @@ average_filter filter1;
 average_filter filter2;
 average_filter filter3;
 IR ir;
-GPIO_TypeDef *ports_led[NUMS_OF_SINGLE_LED] = {GPIOA, GPIOA, GPIOA, GPIOA, GPIOA};
-uint16_t pins[NUMS_OF_SINGLE_LED] = {GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11, GPIO_PIN_12};
-
-GPIO_TypeDef* le_ports[NUMS_OS_SEG] = { GPIOB, GPIOE, GPIOD };
-uint16_t le_pins[NUMS_OS_SEG] = { GPIO_PIN_2, GPIO_PIN_11, GPIO_PIN_8 };
-
-GPIO_TypeDef* ports_seg[NUMS_OS_SEG] = { GPIOE, GPIOE, GPIOB };
-uint16_t pins_seg[NUMS_OS_SEG][4] = {
-   { GPIO_PIN_7, GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10    },
-   { GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 },
-   { GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 }
-};
-SevenSegment_t seg[NUMS_OS_SEG];
-LED led_array[NUMS_OF_SINGLE_LED];
 /* USER CODE END 0 */
 
 /**
@@ -175,7 +129,10 @@ int main(void)
 
 #ifdef TEST_BOARD
   #ifdef TEST_BLE
-  HAL_UART_Receive_IT(&huart3, (uint8_t *)rev, sizeof(rev));
+  HC08_Init(&hc08, &huart3);
+  LED_Init();
+  Servo_Init(&servo, &htim10, TIM_CHANNEL_1, 530);
+  Motor_Init(&motor[1], &htim8, TIM_CHANNEL_3, TIM_CHANNEL_4);
   #endif
   #ifdef TEST_ULTRASONIC
     ultraSonic_Init(&sensor1, &htim2, &filter1, ECHO_L_GPIO_Port, ECHO_L_Pin);
@@ -199,8 +156,8 @@ int main(void)
     LED_Init(led_array, ports_led, pins);
   #endif
   #ifdef TEST_7_SEG
-    for (int i = 0; i < NUMS_OS_SEG; i++)
-      SevenSegment_Init(&seg[i], ports_seg[i], pins_seg[i], le_ports[i], le_pins[i]);
+    
+    SevenSegment_Init();
     HAL_TIM_PWM_Start(&htim10, TIM_CHANNEL_1);
   #endif
   #ifdef TEST_BTN
@@ -226,6 +183,9 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 #ifdef TEST_BOARD
+  	#ifdef TEST_BLE
+	  HC08_ProcessData(&hc08);
+	#endif
   #ifdef TEST_MOTOR
       set_motor(&motor[0], FORWARD, 500);
       set_motor(&motor[1], FORWARD, 500);
@@ -253,7 +213,7 @@ int main(void)
       }
   #endif
   #ifdef TEST_SINGLE_LED
-      LED_All_On(&led_array);
+      LED_All_Toggle(&led_array);
       HAL_Delay(1000);
   #endif
   #ifdef TEST_IR
@@ -955,15 +915,15 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  if (huart->Instance == USART3)
-  {
-//    HAL_GPIO_TogglePin(LED_1_GPIO_Port, LED_1_Pin);
-	  HAL_UART_Receive_IT(&huart3, (uint8_t *)rev, sizeof(rev));
-
-  }
-}
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//{
+//  if (huart->Instance == USART3)
+//  {
+////    HAL_GPIO_TogglePin(LED_1_GPIO_Port, LED_1_Pin);
+//	  HAL_UART_Receive_IT(&huart3, (uint8_t *)rev, sizeof(rev));
+//
+//  }
+//}
 
 // #if defined(TEST_ULTRASONIC) || defined(TEST_ENCODER)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)

@@ -28,6 +28,9 @@ typedef struct
     uint16_t Channel2;
 } PWMcontrol;
 
+
+extern PWMcontrol servo;
+extern PWMcontrol motor[2];
 /**
   * @brief  Init Motor
   * @param  htim Timer handle of encoder module

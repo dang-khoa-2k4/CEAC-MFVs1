@@ -6,6 +6,9 @@
  */
 #include "PWMcontrol.h"
 
+PWMcontrol servo;
+PWMcontrol motor[2];
+
 void Motor_Init(PWMcontrol *PWMcontrol, TIM_HandleTypeDef *htim, uint32_t Channel1, uint32_t Channel2)
 {
     PWMcontrol->htim = htim;

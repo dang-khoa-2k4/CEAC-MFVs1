@@ -4,7 +4,8 @@
 #include "global.h"
 
 #define NUMS_OF_SINGLE_LED 5 // Number of LEDs to control
-#define NUMS_OS_SEG 3 // Number of segments in a 7-segment display
+#define NUMS_OF_SEG 3 // Number of segments in a 7-segment display
+
 
 // Structure definition for a 7-segment LED display
 typedef struct {
@@ -19,13 +20,17 @@ typedef struct {
     uint16_t pin;       // GPIO pin for the LED
 } LED;
 
+
+extern SevenSegment_t seg[NUMS_OF_SEG];
+extern LED led_array[NUMS_OF_SINGLE_LED];
+
 /**
  * @brief Initializes the LEDs with a list of ports and pins.
  * @param led_array Array of LED structures.
  * @param ports Array of GPIO ports corresponding to the LEDs.
  * @param pins Array of GPIO pins corresponding to the LEDs.
  */
-void LED_Init(LED *led_array, GPIO_TypeDef **ports, uint16_t *pins);
+void LED_Init();
 
 /**
  * @brief Turns on a specific LED.
@@ -63,6 +68,7 @@ void LED_All_Off(LED *led_array);
  */
 void LED_All_Toggle(LED *led_array);
 
+void SevenSegment_Init();
 
 /**
  * @brief  Initializes the 7-segment display.
@@ -72,7 +78,7 @@ void LED_All_Toggle(LED *led_array);
  * @param  le_port: GPIO port for the LE pin.
  * @param  le_pin: GPIO pin for the LE pin.
  */
-void SevenSegment_Init(SevenSegment_t *seg, GPIO_TypeDef* data_ports, uint16_t data_pins[4], GPIO_TypeDef* le_port, uint16_t le_pin);
+void SevenSegment_Init_1(SevenSegment_t *seg, GPIO_TypeDef* data_ports, uint16_t data_pins[4], GPIO_TypeDef* le_port, uint16_t le_pin);
 
 /**
  * @brief  Displays a number on the 7-segment display.

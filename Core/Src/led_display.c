@@ -1,9 +1,31 @@
 #include "led_display.h"
 
+GPIO_TypeDef *ports_led[NUMS_OF_SINGLE_LED] = {GPIOA, GPIOA, GPIOA, GPIOA, GPIOA};
+uint16_t pins_led[NUMS_OF_SINGLE_LED] = {GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10, GPIO_PIN_11, GPIO_PIN_12};
+
+GPIO_TypeDef* le_ports[NUMS_OF_SEG] = { GPIOB, GPIOE, GPIOD };
+uint16_t le_pins[NUMS_OF_SEG] = { GPIO_PIN_2, GPIO_PIN_11, GPIO_PIN_8 };
+
+GPIO_TypeDef* ports_seg[NUMS_OF_SEG] = { GPIOE, GPIOE, GPIOB };
+uint16_t pins_seg[NUMS_OF_SEG][4] = {
+   { GPIO_PIN_7, GPIO_PIN_8, GPIO_PIN_9, GPIO_PIN_10    },
+   { GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 },
+   { GPIO_PIN_12, GPIO_PIN_13, GPIO_PIN_14, GPIO_PIN_15 }
+};
+
+SevenSegment_t seg[NUMS_OF_SEG];
+LED led_array[NUMS_OF_SINGLE_LED];
+
+void SevenSegment_Init()
+{
+    for (int i = 0; i < NUMS_OF_SEG; i++)
+        SevenSegment_Init(&seg[i], ports_seg[i], pins_seg[i], le_ports[i], le_pins[i]);
+}
+
 // Function to initialize the 7-segment display
-void SevenSegment_Init(SevenSegment_t *seg, GPIO_TypeDef* data_ports, uint16_t data_pins[4]
+void SevenSegment_Init_1(SevenSegment_t *seg, GPIO_TypeDef* data_ports, uint16_t data_pins[4]
                     , GPIO_TypeDef* le_port, uint16_t le_pin) {
-    // Assign GPIO ports and pins for D0-D3
+                        // Assign GPIO ports and pins for D0-D3
     for (int i = 0; i < 4; i++) {
         seg->data_port[i] = data_ports;
         seg->data_pin[i] = data_pins[i];
@@ -45,10 +67,10 @@ void SevenSegment_Clear(SevenSegment_t *seg) {
 }
 
 
-void LED_Init(LED *led_array, GPIO_TypeDef **ports, uint16_t *pins) {
+void LED_Init() {
     for (int i = 0; i < NUMS_OF_SINGLE_LED; i++) {
-        led_array[i].port = ports[i];
-        led_array[i].pin = pins[i];
+        led_array[i].port = ports_led[i];
+        led_array[i].pin = pins_led[i];
     }
 }
 
