@@ -8,7 +8,7 @@
 #ifndef _ULTRA_SONIC_
 #define _ULTRA_SONIC_
 
- #include "global.h"
+#include "global.h"
 
 #define SOUND_SPEED 34320 // cm/s
 #define STEP_TIMER 1e-6 // prescalers / SysClk = 72 / 72Mhz = 1 us

@@ -34,7 +34,7 @@ Core/Src/input_reading.o: ../Core/Src/input_reading.c \
  ../Core/Inc/average_filter.h ../Core/Inc/ultraSonic.h \
  ../Core/Inc/encoder.h ../Core/Inc/PID.h ../Core/Inc/PWMcontrol.h \
  ../Core/Inc/IR.h ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
- ../Core/Inc/scheduler.h
+ ../Core/Inc/scheduler.h ../Core/Inc/communication.h
 ../Core/Inc/input_reading.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
@@ -78,3 +78,4 @@ Core/Src/input_reading.o: ../Core/Src/input_reading.c \
 ../Core/Inc/led_display.h:
 ../Core/Inc/input_reading.h:
 ../Core/Inc/scheduler.h:
+../Core/Inc/communication.h:

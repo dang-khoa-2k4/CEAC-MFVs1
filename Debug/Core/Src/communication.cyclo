@@ -1,0 +1,5 @@
+../Core/Src/communication.c:16:6:HC08_Init	1
+../Core/Src/communication.c:23:6:HC08_SendCommand	2
+../Core/Src/communication.c:33:6:HC08_ReceiveData	1
+../Core/Src/communication.c:38:6:HC08_ProcessData	1
+../Core/Src/communication.c:45:6:HAL_UART_RxCpltCallback	2

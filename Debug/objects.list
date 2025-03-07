@@ -2,6 +2,7 @@
 "./Core/Src/PID.o"
 "./Core/Src/PWMcontrol.o"
 "./Core/Src/average_filter.o"
+"./Core/Src/communication.o"
 "./Core/Src/encoder.o"
 "./Core/Src/input_reading.o"
 "./Core/Src/led_display.o"
