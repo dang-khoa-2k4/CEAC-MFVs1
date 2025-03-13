@@ -21,7 +21,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -143,7 +142,7 @@ int main(void)
     Servo_Init(&servo, &htim10, TIM_CHANNEL_1, 750);
   #endif
   #ifdef TEST_MOTOR
-    Motor_Init(&motor[0], &htim8, TIM_CHANNEL_1, TIM_CHANNEL_2);
+//    Motor_Init(&motor[0], &htim8, TIM_CHANNEL_1, TIM_CHANNEL_2);
     Motor_Init(&motor[1], &htim8, TIM_CHANNEL_3, TIM_CHANNEL_4);
   #endif
   #ifdef TEST_ENCODER
@@ -187,13 +186,13 @@ int main(void)
 	  HC08_ProcessData(&hc08);
 	#endif
   #ifdef TEST_MOTOR
-      set_motor(&motor[0], FORWARD, 500);
+//      set_motor(&motor[0], FORWARD, 500);
       set_motor(&motor[1], FORWARD, 500);
       HAL_Delay(3000);
-      set_motor(&motor[0], STOP, 0);
+//      set_motor(&motor[0], STOP, 0);
       set_motor(&motor[1], STOP, 0);
       HAL_Delay(3000);
-      set_motor(&motor[0], BACKWARD, 500);
+//      set_motor(&motor[0], BACKWARD, 500);
       set_motor(&motor[1], BACKWARD, 500);
       HAL_Delay(3000);
   #endif

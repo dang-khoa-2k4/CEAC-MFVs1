@@ -24,8 +24,8 @@ typedef enum
     BUTTON_PRESSED_MORE_THAN_1_SECOND
 }ButtonState;
 
-extern const uint16_t btn_pin[N0_OF_BUTTONS];
-extern const GPIO_TypeDef * btn_port[N0_OF_BUTTONS];
+extern uint16_t btn_pin[N0_OF_BUTTONS];
+extern GPIO_TypeDef * btn_port[N0_OF_BUTTONS];
 
 void button_reading ( void ) ;
 unsigned char is_button_pressed ( uint8_t index );

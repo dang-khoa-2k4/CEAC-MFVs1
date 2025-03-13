@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include "main.h"
 #include "average_filter.h"
+#include <string.h>
+#include <stdlib.h>
 
 #include "ultraSonic.h"
 #include "encoder.h"
