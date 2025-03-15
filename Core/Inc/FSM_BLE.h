@@ -1,0 +1,17 @@
+#ifndef _FSM_BLE_H_
+#define _FSM_BLE_H_
+#include <stdint.h>
+#include "global.h"
+
+typedef enum
+{
+    SLEEPING,
+    WAKEUP
+} MODE_BLE;
+
+extern MODE_BLE;
+
+uint8_t ble_init();
+void fsm_ble_run();
+
+#endif 

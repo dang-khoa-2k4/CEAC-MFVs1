@@ -6,7 +6,6 @@
 #define NUMS_OF_SINGLE_LED 5 // Number of LEDs to control
 #define NUMS_OF_SEG 3 // Number of segments in a 7-segment display
 
-
 // Structure definition for a 7-segment LED display
 typedef struct {
     GPIO_TypeDef* data_port[4]; // GPIO ports for D0-D3 pins
@@ -36,31 +35,31 @@ void LED_Init();
  * @brief Turns on a specific LED.
  * @param led Pointer to the LED structure to turn on.
  */
-void LED_On(LED *led);
+void LED_On(LED led);
 
 /**
  * @brief Turns off a specific LED.
  * @param led Pointer to the LED structure to turn off.
  */
-void LED_Off(LED *led);
+void LED_Off(LED led);
 
 /**
  * @brief Toggles the state of a specific LED.
  * @param led Pointer to the LED structure to toggle.
  */
-void LED_Toggle(LED *led);
+void LED_Toggle(LED led);
 
 /**
  * @brief Turns on all LEDs in the array.
  * @param led_array Array of LED structures.
  */
-void LED_All_On(LED *led_array);
+void LED_All_On(LED led_array);
 
 /**
  * @brief Turns off all LEDs in the array.
  * @param led_array Array of LED structures.
  */
-void LED_All_Off(LED *led_array);
+void LED_All_Off(LED led_array);
 
 /**
  * @brief Toggles the state of all LEDs in the array.

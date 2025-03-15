@@ -74,32 +74,32 @@ void LED_Init() {
     }
 }
 
-void LED_On(LED *led) {
-    HAL_GPIO_WritePin(led->port, led->pin, GPIO_PIN_SET);
+void LED_On(LED led) {
+    HAL_GPIO_WritePin(led.port, led.pin, GPIO_PIN_SET);
 }
 
-void LED_Off(LED *led) {
-    HAL_GPIO_WritePin(led->port, led->pin, GPIO_PIN_RESET);
+void LED_Off(LED led) {
+    HAL_GPIO_WritePin(led.port, led.pin, GPIO_PIN_RESET);
 }
 
-void LED_Toggle(LED *led) {
-    HAL_GPIO_TogglePin(led->port, led->pin);
+void LED_Toggle(LED led) {
+    HAL_GPIO_TogglePin(led.port, led.pin);
 }
 
 void LED_All_On(LED *led_array) {
     for (int i = 0; i < NUMS_OF_SINGLE_LED; i++) {
-        LED_On(&led_array[i]);
+        LED_On(led_array[i]);
     }
 }
 
 void LED_All_Off(LED *led_array) {
     for (int i = 0; i < NUMS_OF_SINGLE_LED; i++) {
-        LED_Off(&led_array[i]);
+        LED_Off(led_array[i]);
     }
 }
 
 void LED_All_Toggle(LED *led_array) {
     for (int i = 0; i < NUMS_OF_SINGLE_LED; i++) {
-        LED_Toggle(&led_array[i]);
+        LED_Toggle(led_array[i]);
     }
 }

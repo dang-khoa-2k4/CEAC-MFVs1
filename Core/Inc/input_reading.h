@@ -27,6 +27,11 @@ typedef enum
 extern const uint16_t btn_pin[N0_OF_BUTTONS];
 extern const GPIO_TypeDef * btn_port[N0_OF_BUTTONS];
 
+#define MODE_BUTTON 4 // main fsm handle
+#define SAVE_BUTTON 0 // main fsm handle
+#define COLOR_BUTTON 1 // manual fsm and tuning fsm handle
+#define TIME_BUTTON 2 // input_reading handle
+
 void button_reading ( void ) ;
 unsigned char is_button_pressed ( uint8_t index );
 unsigned char is_button_pressed_1s ( uint8_t index );

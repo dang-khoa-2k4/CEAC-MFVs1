@@ -1,10 +1,10 @@
 #ifndef __GLOBAL_H
 #define __GLOBAL_H
+
 #include <stdbool.h>
 #include <stdint.h>
 #include "main.h"
 #include "average_filter.h"
-
 #include "ultraSonic.h"
 #include "encoder.h"
 #include "PID.h"
@@ -14,6 +14,11 @@
 #include "input_reading.h"
 #include "scheduler.h"
 #include "communication.h" 
+#include <FSM_BLE.h>
+#include <FSM_maze.h>
+#include <FSM_config.h>
+#include <FSM_line.h>
+
 #define TEST_BOARD
 // #define TEST_MOTOR
 //#define TEST_SERVO

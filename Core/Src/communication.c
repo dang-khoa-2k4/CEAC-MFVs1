@@ -19,9 +19,9 @@ void HC08_Init(HC08 *hc08, UART_HandleTypeDef *huart)
     memset(hc08->rev_buffer, 0, sizeof(hc08->rev_buffer)); // Clear the receive buffer
     hc08->rev_flag = 0;                                    // Reset the receive flag
     // default setting
-    // HC08_SendCommand(hc08, SET_ROLE_SLAVE);
-    // HC08_SendCommand(hc08, SET_CONNECT);
-    // HC08_SendCommand(hc08, SET_NAME);
+    HC08_SendCommand(hc08, SET_ROLE_SLAVE);
+    HC08_SendCommand(hc08, SET_CONNECT);
+    HC08_SendCommand(hc08, SET_NAME);
 
     HAL_UART_Receive_IT(hc08->huart, (uint8_t *)hc08->rev_buffer, sizeof(hc08->rev_buffer));
 }
@@ -48,18 +48,22 @@ void reset_state()
     set_motor(&motor[1], FORWARD, 0);
     set_servo(&servo, 530);
 }
+
 void run_forward()
 {
     set_motor(&motor[1], FORWARD, 800);
 }
+
 void run_backward()
 {
     set_motor(&motor[1], BACKWARD, 800);
 }
+
 void servo_left()
 {
     set_servo(&servo, 630);
 }
+
 void servo_right()
 {
     set_servo(&servo, 430);
@@ -70,36 +74,36 @@ void HC08_ProcessData(HC08 *hc08)
     if (hc08->rev_flag)
     { // Check if data is received
         // TODO - Process the received data
-        
         uint16_t extract_data = 0;
         for (int i = 0; i < 3; i++)
         {
             extract_data |= (hc08->rev_buffer[i]) << (i * 4);
         }
+
         switch (extract_data)
         {
         case CTRL_END:
             /* code */
-            LED_Toggle(&led_array[0]);
+            LED_Toggle(led_array[0]);
             reset_state();
             break;
         case CTRL_UP:
-            LED_Toggle(&led_array[1]);
+            LED_Toggle(led_array[1]);
             run_forward();
             break;
 
         case CTRL_DOWN:
-            LED_Toggle(&led_array[2]);
+            LED_Toggle(led_array[2]);
             run_backward();
             break;
 
         case CTRL_LEFT:
-            LED_Toggle(&led_array[3]);
+            LED_Toggle(led_array[3]);
             servo_left();
             break;
 
         case CTRL_RIGHT:
-            LED_Toggle(&led_array[4]);
+            LED_Toggle(led_array[4]);
             servo_right();
             break;
 
