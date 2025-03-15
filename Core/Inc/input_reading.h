@@ -24,8 +24,8 @@ typedef enum
     BUTTON_PRESSED_MORE_THAN_1_SECOND
 }ButtonState;
 
-extern const uint16_t btn_pin[N0_OF_BUTTONS];
-extern const GPIO_TypeDef * btn_port[N0_OF_BUTTONS];
+extern uint16_t btn_pin[N0_OF_BUTTONS];
+extern GPIO_TypeDef * btn_port[N0_OF_BUTTONS];
 
 #define MODE_BUTTON 4 // main fsm handle
 #define SAVE_BUTTON 0 // main fsm handle

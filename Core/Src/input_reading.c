@@ -7,8 +7,8 @@
 
 #include "input_reading.h"
 
-const uint16_t btn_pin[N0_OF_BUTTONS] = {BTN_1_Pin, BTN_2_Pin, BTN_3_Pin, BTN_4_Pin};
-const GPIO_TypeDef * btn_port[N0_OF_BUTTONS] = 
+uint16_t btn_pin[N0_OF_BUTTONS] = {BTN_1_Pin, BTN_2_Pin, BTN_3_Pin, BTN_4_Pin};
+GPIO_TypeDef * btn_port[N0_OF_BUTTONS] =
     {   BTN_1_GPIO_Port, 
         BTN_2_GPIO_Port, 
         BTN_3_GPIO_Port, 
@@ -28,7 +28,7 @@ static uint8_t flagForButtonPress1s[N0_OF_BUTTONS];
 static uint16_t counterForButtonPress1s[N0_OF_BUTTONS];
 void button_reading(void)
 {
-    for (char i = 0; i < N0_OF_BUTTONS; i++)
+    for (uint8_t i = 0; i < N0_OF_BUTTONS; i++)
     {
         debounceButtonBuffer3[i] = debounceButtonBuffer2[i];
         debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
