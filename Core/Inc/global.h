@@ -1,5 +1,5 @@
-#ifndef __GLOBAL_H
-#define __GLOBAL_H
+#ifndef __GLOBAL_H__
+#define __GLOBAL_H__
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -17,10 +17,10 @@
 #include "input_reading.h"
 #include "scheduler.h"
 #include "communication.h" 
-#include <FSM_BLE.h>
-#include <FSM_maze.h>
-#include <FSM_config.h>
-#include <FSM_line.h>
+#include "FSM_BLE.h"
+#include "FSM_maze.h"
+#include "FSM_config.h"
+#include "FSM_line.h"
 
 #define TEST_BOARD
 // #define TEST_MOTOR

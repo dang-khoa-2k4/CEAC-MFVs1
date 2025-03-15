@@ -3,6 +3,7 @@
         "*.sqlbook": "sql",
         "*.ndjson": "jsonl",
         "*.dbclient-js": "javascript",
-        "communication.h": "c"
+        "communication.h": "c",
+        "main.h": "c"
     }
 }

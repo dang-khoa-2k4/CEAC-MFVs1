@@ -44,7 +44,9 @@ typedef struct
     uint8_t rev_buffer[SIZE_BUFFER];       // Buffer to store received data
     uint8_t rev_flag;          // Flag to indicate data received
 } HC08;
+
 extern uint32_t extract_data;
+
 // HC-08 function prototypes
 void HC08_Init(HC08 *hc08, UART_HandleTypeDef *huart); // Initialize HC-08 module
 void HC08_SendCommand(HC08 *hc08, uint8_t command_id); // Send AT command to HC-08

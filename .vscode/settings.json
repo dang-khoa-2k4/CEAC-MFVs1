@@ -6,6 +6,9 @@
         "ir.h": "c",
         "stdbool.h": "c",
         "stm32f4xx_hal.h": "c",
-        "global.h": "c"
+        "global.h": "c",
+        "fsm_line.h": "c",
+        "fsm_maze.h": "c",
+        "fsm_ble.h": "c"
     }
 }
