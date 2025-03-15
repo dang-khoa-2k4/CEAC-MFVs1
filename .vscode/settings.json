@@ -9,6 +9,10 @@
         "global.h": "c",
         "fsm_line.h": "c",
         "fsm_maze.h": "c",
-        "fsm_ble.h": "c"
+        "fsm_ble.h": "c",
+        "average_filter.h": "c",
+        "stdlib.h": "c",
+        "fsm_config.h": "c",
+        "ultrasonic.h": "c"
     }
 }

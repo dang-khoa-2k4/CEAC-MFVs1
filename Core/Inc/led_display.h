@@ -12,7 +12,7 @@ typedef struct {
     uint16_t data_pin[4];       // GPIO pins for D0-D3
     GPIO_TypeDef* le_port;      // GPIO port for LE (Latch Enable) pin
     uint16_t le_pin;            // GPIO pin for LE
-} SevenSegment_t;
+} sSeg_t;
 
 typedef struct {
     GPIO_TypeDef *port; // GPIO port for the LED
@@ -20,7 +20,7 @@ typedef struct {
 } LED;
 
 
-extern SevenSegment_t seg[NUMS_OF_SEG];
+extern sSeg_t seg[NUMS_OF_SEG];
 extern LED led_array[NUMS_OF_SINGLE_LED];
 
 /**
@@ -53,13 +53,13 @@ void LED_Toggle(LED led);
  * @brief Turns on all LEDs in the array.
  * @param led_array Array of LED structures.
  */
-void LED_All_On(LED led_array);
+void LED_All_On(LED * led_array);
 
 /**
  * @brief Turns off all LEDs in the array.
  * @param led_array Array of LED structures.
  */
-void LED_All_Off(LED led_array);
+void LED_All_Off(LED * led_array);
 
 /**
  * @brief Toggles the state of all LEDs in the array.
@@ -67,29 +67,19 @@ void LED_All_Off(LED led_array);
  */
 void LED_All_Toggle(LED *led_array);
 
-void SevenSegment_Init();
-
-/**
- * @brief  Initializes the 7-segment display.
- * @param  *seg: Pointer to the 7-segment display structure.
- * @param  *data_ports: Array of GPIO ports for D0-D3.
- * @param  *data_pins: Array of GPIO pins for D0-D3.
- * @param  le_port: GPIO port for the LE pin.
- * @param  le_pin: GPIO pin for the LE pin.
- */
-void SevenSegment_Init_1(SevenSegment_t *seg, GPIO_TypeDef* data_ports, uint16_t data_pins[4], GPIO_TypeDef* le_port, uint16_t le_pin);
+void sSeg_init();
 
 /**
  * @brief  Displays a number on the 7-segment display.
  * @param  *seg: Pointer to the 7-segment display structure.
  * @param  number: Number to be displayed (0-9).
  */
-void SevenSegment_Display(SevenSegment_t *seg, uint8_t number);
+void sSeg_Display(sSeg_t *seg, uint8_t number);
 
 /**
  * @brief  Clears the 7-segment display.
  * @param  *seg: Pointer to the 7-segment display structure.
  */
-void SevenSegment_Clear(SevenSegment_t *seg);
+void sSeg_Clear(sSeg_t *seg);
 
 #endif // SEVEN_SEGMENT_H

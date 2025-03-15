@@ -2,6 +2,7 @@
 #define HC08_H
 
 #include "global.h"
+#include "stm32f4xx_hal.h"
 // Define command indices
 
 #define SIZE_BUFFER 8

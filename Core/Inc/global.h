@@ -1,9 +1,9 @@
 #ifndef __GLOBAL_H__
 #define __GLOBAL_H__
 
+#include "main.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include "main.h"
 #include "average_filter.h"
 #include <string.h>
 #include <stdlib.h>
@@ -33,4 +33,5 @@
 // #define TEST_BTN
 // #define TEST_SW
 #define TEST_BLE
+
 #endif

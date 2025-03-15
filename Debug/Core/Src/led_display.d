@@ -34,7 +34,9 @@ Core/Src/led_display.o: ../Core/Src/led_display.c \
  ../Core/Inc/average_filter.h ../Core/Inc/ultraSonic.h \
  ../Core/Inc/encoder.h ../Core/Inc/PID.h ../Core/Inc/PWMcontrol.h \
  ../Core/Inc/IR.h ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
- ../Core/Inc/scheduler.h ../Core/Inc/communication.h
+ ../Core/Inc/scheduler.h ../Core/Inc/communication.h \
+ ../Core/Inc/FSM_BLE.h ../Core/Inc/FSM_maze.h ../Core/Inc/FSM_config.h \
+ ../Core/Inc/FSM_line.h
 ../Core/Inc/led_display.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
@@ -79,3 +81,7 @@ Core/Src/led_display.o: ../Core/Src/led_display.c \
 ../Core/Inc/input_reading.h:
 ../Core/Inc/scheduler.h:
 ../Core/Inc/communication.h:
+../Core/Inc/FSM_BLE.h:
+../Core/Inc/FSM_maze.h:
+../Core/Inc/FSM_config.h:
+../Core/Inc/FSM_line.h:

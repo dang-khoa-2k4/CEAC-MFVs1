@@ -1,3 +1,8 @@
+"./Core/Src/FSM.o"
+"./Core/Src/FSM_BLE.o"
+"./Core/Src/FSM_config.o"
+"./Core/Src/FSM_line.o"
+"./Core/Src/FSM_maze.o"
 "./Core/Src/IR.o"
 "./Core/Src/PID.o"
 "./Core/Src/PWMcontrol.o"

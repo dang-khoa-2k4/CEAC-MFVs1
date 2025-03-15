@@ -1,7 +1,7 @@
-../Core/Src/scheduler.c:13:6:Scheduler_Init	16	static
-../Core/Src/scheduler.c:19:17:Get_New_Task_ID	4	static
-../Core/Src/scheduler.c:26:6:Scheduler_Update	4	static
-../Core/Src/scheduler.c:35:10:Scheduler_Add_Task	48	static
-../Core/Src/scheduler.c:109:6:Scheduler_Dispatch_Tasks	40	static
-../Core/Src/scheduler.c:120:9:Scheduler_Remove_Task	32	static
-../Core/Src/scheduler.c:145:10:freq_to_tick	24	static
+../Core/Src/scheduler.c:13:6:Scheduler_Init	4	static
+../Core/Src/scheduler.c:19:17:Get_New_Task_ID	16	static
+../Core/Src/scheduler.c:27:6:Scheduler_Update	4	static
+../Core/Src/scheduler.c:38:10:Scheduler_Add_Task	48	static
+../Core/Src/scheduler.c:117:6:Scheduler_Dispatch_Tasks	40	static
+../Core/Src/scheduler.c:133:9:Scheduler_Remove_Task	32	static
+../Core/Src/scheduler.c:163:10:freq_to_tick	24	static

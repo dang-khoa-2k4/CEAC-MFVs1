@@ -9,7 +9,7 @@ typedef enum
     WAKEUP
 } MODE_BLE;
 
-extern MODE_BLE;
+extern MODE_BLE ble_state;
 
 uint8_t ble_init();
 void fsm_ble_run();

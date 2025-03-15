@@ -16,9 +16,9 @@ uint32_t extract_data = 0;
 // Initialize the HC-08 structure
 void HC08_Init(HC08 *hc08, UART_HandleTypeDef *huart)
 {
-	hc08->huart = huart;								   // Assign the UART handle
+	hc08->huart = huart;					  // Assign the UART handle
 	memset(hc08->rev_buffer, 0, SIZE_BUFFER); // Clear the receive buffer
-	hc08->rev_flag = 0;									   // Reset the receive flag
+	hc08->rev_flag = 0;						  // Reset the receive flag
 	// default setting
 	HC08_SendCommand(hc08, SET_ROLE_SLAVE);
 	HC08_SendCommand(hc08, SET_CONNECT);
@@ -32,36 +32,22 @@ void HC08_SendCommand(HC08 *hc08, uint8_t command_id)
 {
 	if (command_id >= 0 && command_id < NO_OF_COMMANDS) // Ensure command_id is valid
 	{
-		char *command = send_command[command_id]; // Get the command from the array
-		HAL_UART_Transmit(hc08->huart, (uint8_t *)command, sizeof(command),
-						  100);									   // Transmit the command
+		char *command = send_command[command_id];		   // Get the command from the array
+		HAL_UART_Transmit(hc08->huart, (uint8_t *)command, // Transmit the command
+						  sizeof(command), 100);
 		HAL_UART_Transmit(hc08->huart, (uint8_t *)"\r\n", 2, 100); // Transmit end-of-line characters
 	}
 }
-//
-//// Receive data from the HC-08 module
-// void HC08_ReceiveData(HC08 *hc08, uint8_t *data) {
-//	HAL_UART_Receive_IT(hc08->huart, (uint8_t*) data, sizeof(data) * 2); // Start receiving in interrupt mode
-// }
 
 void reset_state()
 {
 	set_servo(&servo, 530);
 }
+
 void run_forward()
 {
 	HAL_Delay(100);
 	set_motor(&motor[1], FORWARD, 800);
-}
-
-void run_forward()
-{
-	set_motor(&motor[1], FORWARD, 800);
-}
-
-void run_backward()
-{
-	set_motor(&motor[1], BACKWARD, 800);
 }
 
 void run_backward()
@@ -77,18 +63,9 @@ void servo_left()
 
 void servo_right()
 {
-	set_servo(&servo, 630);
-}
-
-void servo_right()
-{
 	set_servo(&servo, 430);
 }
 
-void servo_left()
-{
-	set_servo(&servo, 430);
-}
 // Process the received data
 
 void HC08_ProcessData(HC08 *hc08)

@@ -123,7 +123,8 @@ int main(void)
   MX_TIM4_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
- Scheduler_Init(&htim4);
+  HAL_TIM_Base_Start_IT(&htim4);
+  Scheduler_Init();
 
 
 #ifdef TEST_BOARD
