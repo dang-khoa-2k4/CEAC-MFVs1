@@ -36,7 +36,7 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
  ../Core/Inc/input_reading.h ../Core/Inc/scheduler.h \
  ../Core/Inc/communication.h ../Core/Inc/FSM_BLE.h ../Core/Inc/FSM_maze.h \
  ../Core/Inc/FSM_config.h ../Core/Inc/FSM_line.h \
- ../Core/Inc/stm32f4xx_it.h
+ ../Core/Inc/EEPROM_emulation.h ../Core/Inc/stm32f4xx_it.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -85,4 +85,5 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
 ../Core/Inc/FSM_maze.h:
 ../Core/Inc/FSM_config.h:
 ../Core/Inc/FSM_line.h:
+../Core/Inc/EEPROM_emulation.h:
 ../Core/Inc/stm32f4xx_it.h:

@@ -8,6 +8,8 @@
 
 PWMcontrol servo;
 PWMcontrol motor[2];
+uint16_t speed = DEFAULT_SPEED;
+uint16_t servo_middle = SERVO_MIDDLE_DEFAULT;
 
 void Motor_Init(PWMcontrol *PWMcontrol, TIM_HandleTypeDef *htim, uint32_t Channel1, uint32_t Channel2)
 {
@@ -32,14 +34,7 @@ void Servo_Init(PWMcontrol *PWMcontrol, TIM_HandleTypeDef *htim, uint32_t Channe
 
 void set_motor(PWMcontrol *PWMcontrol, int8_t direction, uint16_t PWM)
 {
-    if (PWM > MAX_PULSE_WIDTH)
-    {
-        PWM = MAX_PULSE_WIDTH;
-    }
-    else if (PWM < 0)
-    {
-        PWM = 0;
-    }
+    PWM = PWM > MAX_PULSE_WIDTH ? MAX_PULSE_WIDTH : PWM;
 
     if (direction == BACKWARD)
     {
@@ -61,16 +56,36 @@ void set_motor(PWMcontrol *PWMcontrol, int8_t direction, uint16_t PWM)
 
 void set_servo(PWMcontrol *PWMcontrol, uint16_t PWM)
 {
-    // if (PWM > SERVO_MAX_PULSE)
-    // {
-    //     PWM = SERVO_MAX_PULSE;
-    // }
-    // else if (PWM < SERVO_MIN_PULSE)
-    // {
-    //     PWM = SERVO_MIN_PULSE;
-    // }
+    PWM = PWM > SERVO_LEFT  ? SERVO_LEFT 
+        : PWM < SERVO_RIGHT ? SERVO_RIGHT : PWM;
     __HAL_TIM_SET_COMPARE(PWMcontrol->htim, PWMcontrol->Channel1, PWM);
     return;
 }
 
+void c()
+{
+	set_servo(&servo, servo_middle);
+}
+
+void run_forward()
+{
+	HAL_Delay(100);
+	set_motor(&motor[1], FORWARD, DEFAULT_SPEED);
+}
+
+void run_backward()
+{
+	HAL_Delay(100);
+	set_motor(&motor[1], BACKWARD, DEFAULT_SPEED);
+}
+
+void servo_left()
+{
+	set_servo(&servo, SERVO_LEFT);
+}
+
+void servo_right()
+{
+	set_servo(&servo, SERVO_RIGHT);
+}
 

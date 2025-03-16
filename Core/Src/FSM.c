@@ -33,7 +33,7 @@ static void mode_press_handler(void)
 
 uint8_t fsm_init()
 {
-    fsm_state = CONFIG;   
+    fsm_state = CONFIG;
 }
 
 void fsm_run()

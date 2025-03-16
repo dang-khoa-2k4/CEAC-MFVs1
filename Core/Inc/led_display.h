@@ -1,5 +1,5 @@
-#ifndef SEVEN_SEGMENT_H
-#define SEVEN_SEGMENT_H
+#ifndef LED_DISPLAY_H
+#define LED_DISPLAY_H
 
 #include "global.h"
 
@@ -67,6 +67,10 @@ void LED_All_Off(LED * led_array);
  */
 void LED_All_Toggle(LED *led_array);
 
+/**
+ * @brief Initializes the 7-segment display
+ * @param none
+ */
 void sSeg_init();
 
 /**
@@ -74,12 +78,12 @@ void sSeg_init();
  * @param  *seg: Pointer to the 7-segment display structure.
  * @param  number: Number to be displayed (0-9).
  */
-void sSeg_Display(sSeg_t *seg, uint8_t number);
+void sSeg_Display(sSeg_t seg, uint8_t number);
 
 /**
  * @brief  Clears the 7-segment display.
  * @param  *seg: Pointer to the 7-segment display structure.
  */
-void sSeg_Clear(sSeg_t *seg);
+void sSeg_Clear(sSeg_t seg);
 
 #endif // SEVEN_SEGMENT_H

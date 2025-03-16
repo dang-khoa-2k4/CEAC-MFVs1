@@ -35,7 +35,7 @@ Core/Src/IR.o: ../Core/Src/IR.c ../Core/Inc/IR.h ../Core/Inc/global.h \
  ../Core/Inc/IR.h ../Core/Inc/led_display.h ../Core/Inc/input_reading.h \
  ../Core/Inc/scheduler.h ../Core/Inc/communication.h \
  ../Core/Inc/FSM_BLE.h ../Core/Inc/FSM_maze.h ../Core/Inc/FSM_config.h \
- ../Core/Inc/FSM_line.h
+ ../Core/Inc/FSM_line.h ../Core/Inc/EEPROM_emulation.h
 ../Core/Inc/IR.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
@@ -84,3 +84,4 @@ Core/Src/IR.o: ../Core/Src/IR.c ../Core/Inc/IR.h ../Core/Inc/global.h \
 ../Core/Inc/FSM_maze.h:
 ../Core/Inc/FSM_config.h:
 ../Core/Inc/FSM_line.h:
+../Core/Inc/EEPROM_emulation.h:

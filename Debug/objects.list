@@ -1,3 +1,4 @@
+"./Core/Src/EEPROM_emulation.o"
 "./Core/Src/FSM.o"
 "./Core/Src/FSM_BLE.o"
 "./Core/Src/FSM_config.o"
@@ -9,6 +10,7 @@
 "./Core/Src/average_filter.o"
 "./Core/Src/communication.o"
 "./Core/Src/encoder.o"
+"./Core/Src/global.o"
 "./Core/Src/input_reading.o"
 "./Core/Src/led_display.o"
 "./Core/Src/main.o"

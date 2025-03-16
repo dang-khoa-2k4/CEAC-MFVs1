@@ -21,6 +21,7 @@ typedef struct
     TIM_HandleTypeDef *htim;
 } Encoder;
 
+extern Encoder enc;
 
 void updateDiffPulse(Encoder* en, int32_t *diffPulse);
 /**

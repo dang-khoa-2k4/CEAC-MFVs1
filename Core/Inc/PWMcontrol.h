@@ -10,9 +10,11 @@
 
 #include "global.h"
 
-#define SERVO_MAX_PULSE 1200  //ums
-#define SERVO_MIN_PULSE 250 //ums
 #define MAX_PULSE_WIDTH 1023  // tim->ARR
+#define DEFAULT_SPEED 800
+#define SERVO_MIDDLE_DEFAULT 530
+#define SERVO_LEFT 630
+#define SERVO_RIGHT 430
 
 enum DIRECTION
 {
@@ -31,6 +33,8 @@ typedef struct
 
 extern PWMcontrol servo;
 extern PWMcontrol motor[2];
+extern uint16_t speed;
+extern uint16_t servo_middle;
 /**
   * @brief  Init Motor
   * @param  htim Timer handle of encoder module
@@ -59,6 +63,16 @@ void set_motor(PWMcontrol *motor, int8_t direction, uint16_t PWM);
   * @param  PWM is duty cycle
 */
 void set_servo(PWMcontrol *servo, uint16_t PWM);
+
+void reset_state();
+
+void run_forward();
+
+void run_backward();
+
+void servo_left();
+
+void servo_right();
 
 // void HandleCar(PWMcontrol *MotorLeft, PWMcontrol *MotorRight, PWMcontrol *Servo);
 #endif

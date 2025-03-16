@@ -41,7 +41,7 @@ void sSeg_init()
 }
 
 // Function to display a number on the 7-segment display
-void sSeg_Display(sSeg_t *seg, uint8_t number)
+void sSeg_Display(sSeg_t seg, uint8_t number)
 {
     if (number > 9)
         return; // Only numbers 0-9 are valid for display
@@ -49,28 +49,28 @@ void sSeg_Display(sSeg_t *seg, uint8_t number)
     // Write the BCD value to the D0-D3 pins
     for (int i = 0; i < 4; i++)
     {
-        HAL_GPIO_WritePin(seg->data_port[i], seg->data_pin[i], (number >> i) & 0x01);
+        HAL_GPIO_WritePin(seg.data_port[i], seg.data_pin[i], (number >> i) & 0x01);
     }
 
     // Toggle LE to latch the displayed value
-    HAL_GPIO_WritePin(seg->le_port, seg->le_pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(seg.le_port, seg.le_pin, GPIO_PIN_SET);
     // HAL_Delay(1); // Wait for a brief period to ensure LE stabilizes
     // HAL_GPIO_WritePin(seg->le_port, seg->le_pin, GPIO_PIN_RESET);
 }
 
 // Function to clear the 7-segment display
-void sSeg_Clear(sSeg_t *seg)
+void sSeg_Clear(sSeg_t seg)
 {
     // Set all D0-D3 pins to LOW
     for (int i = 0; i < 4; i++)
     {
-        HAL_GPIO_WritePin(seg->data_port[i], seg->data_pin[i], GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(seg.data_port[i], seg.data_pin[i], GPIO_PIN_RESET);
     }
 
     // Toggle LE to update the cleared state
-    HAL_GPIO_WritePin(seg->le_port, seg->le_pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(seg.le_port, seg.le_pin, GPIO_PIN_SET);
     HAL_Delay(1);
-    HAL_GPIO_WritePin(seg->le_port, seg->le_pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(seg.le_port, seg.le_pin, GPIO_PIN_RESET);
 }
 
 void LED_Init()

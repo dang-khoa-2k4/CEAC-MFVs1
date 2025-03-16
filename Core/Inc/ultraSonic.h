@@ -26,6 +26,10 @@ typedef struct
     average_filter * filter;
 } ultraSonic;
 
+extern ultraSonic sensor1;
+extern ultraSonic sensor2;
+extern ultraSonic sensor3;
+
 /**
   * @brief  Init ultra sonic sensor
   * @param  *sensor is pointer to the ultra sonic structure

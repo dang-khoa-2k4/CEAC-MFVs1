@@ -39,33 +39,6 @@ void HC08_SendCommand(HC08 *hc08, uint8_t command_id)
 	}
 }
 
-void reset_state()
-{
-	set_servo(&servo, 530);
-}
-
-void run_forward()
-{
-	HAL_Delay(100);
-	set_motor(&motor[1], FORWARD, 800);
-}
-
-void run_backward()
-{
-	HAL_Delay(100);
-	set_motor(&motor[1], BACKWARD, 800);
-}
-
-void servo_left()
-{
-	set_servo(&servo, 630);
-}
-
-void servo_right()
-{
-	set_servo(&servo, 430);
-}
-
 // Process the received data
 
 void HC08_ProcessData(HC08 *hc08)

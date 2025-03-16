@@ -4,10 +4,10 @@
 #include "main.h"
 #include <stdbool.h>
 #include <stdint.h>
-#include "average_filter.h"
 #include <string.h>
 #include <stdlib.h>
 
+#include "average_filter.h"
 #include "ultraSonic.h"
 #include "encoder.h"
 #include "PID.h"
@@ -21,8 +21,9 @@
 #include "FSM_maze.h"
 #include "FSM_config.h"
 #include "FSM_line.h"
+#include "EEPROM_emulation.h"
 
-#define TEST_BOARD
+//#define TEST_BOARD
 // #define TEST_MOTOR
 //#define TEST_SERVO
 // #define TEST_7_SEG
@@ -32,6 +33,7 @@
 // #define TEST_ENCODER
 // #define TEST_BTN
 // #define TEST_SW
-#define TEST_BLE
+
+void init_system(void);
 
 #endif

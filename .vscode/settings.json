@@ -13,6 +13,8 @@
         "average_filter.h": "c",
         "stdlib.h": "c",
         "fsm_config.h": "c",
-        "ultrasonic.h": "c"
+        "ultrasonic.h": "c",
+        "eeprom_emulation.h": "c",
+        "main.h": "c"
     }
 }

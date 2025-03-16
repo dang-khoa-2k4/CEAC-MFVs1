@@ -1,9 +1,4 @@
 ../Core/Src/communication.c:17:6:HC08_Init	16	static
 ../Core/Src/communication.c:31:6:HC08_SendCommand	24	static
-../Core/Src/communication.c:42:6:reset_state	8	static
-../Core/Src/communication.c:47:6:run_forward	8	static
-../Core/Src/communication.c:53:6:run_backward	8	static
-../Core/Src/communication.c:59:6:servo_left	8	static
-../Core/Src/communication.c:64:6:servo_right	8	static
-../Core/Src/communication.c:71:6:HC08_ProcessData	24	static
-../Core/Src/communication.c:139:6:HAL_UART_RxCpltCallback	16	static
+../Core/Src/communication.c:44:6:HC08_ProcessData	24	static
+../Core/Src/communication.c:112:6:HAL_UART_RxCpltCallback	16	static

@@ -11,6 +11,8 @@ typedef struct
     uint16_t data[NUMS_OF_IR];
 } IR;
 
+extern IR ir;
+
 void IR_Init(IR *ir, ADC_HandleTypeDef *hadc);
 void IR_update(IR *ir);
 #endif

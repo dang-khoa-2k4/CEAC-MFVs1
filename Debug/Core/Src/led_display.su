@@ -1,7 +1,7 @@
 ../Core/Src/led_display.c:20:13:sSeg_init_config	32	static
 ../Core/Src/led_display.c:37:6:sSeg_init	32	static
-../Core/Src/led_display.c:44:6:sSeg_Display	24	static
-../Core/Src/led_display.c:62:6:sSeg_Clear	24	static
+../Core/Src/led_display.c:44:6:sSeg_Display	16	static
+../Core/Src/led_display.c:62:6:sSeg_Clear	16	static
 ../Core/Src/led_display.c:76:6:LED_Init	16	static
 ../Core/Src/led_display.c:85:6:LED_On	16	static
 ../Core/Src/led_display.c:90:6:LED_Off	16	static

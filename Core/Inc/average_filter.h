@@ -13,6 +13,10 @@ typedef struct
     uint16_t count; 
 } average_filter;
 
+extern average_filter filter1;
+extern average_filter filter2;
+extern average_filter filter3;
+
 /**
   * @brief  Reset all paramater in average filter structure
   * @param  *filter is pointer to the average filter structure

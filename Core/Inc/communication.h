@@ -47,6 +47,7 @@ typedef struct
 } HC08;
 
 extern uint32_t extract_data;
+extern HC08 hc08;
 
 // HC-08 function prototypes
 void HC08_Init(HC08 *hc08, UART_HandleTypeDef *huart); // Initialize HC-08 module
