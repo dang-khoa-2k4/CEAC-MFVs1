@@ -11,6 +11,8 @@ average_filter filter2;
 average_filter filter3;
 IR ir;
 
+uint8_t sSeg_data[NUMS_OF_SEG] = {0};
+
 void init_system(void)
 {
     // Initialize the HC08

@@ -9,7 +9,9 @@ char *send_command[NO_OF_COMMANDS] = {
 	"AT+CONT=0",			// Enable connection
 	"AT+NAME=CEAC-MFV",		// Set module name
 	"AT+ADDR=XINCAMON1234", // Set module address
-	"AT+CONT=?"				// Check connection status
+	"AT+CONT=?",				// Check connection status
+	"AT+MODE=2",				// Set module to sleep
+	"AT+MODE=0"					// Wake up module
 };
 
 uint32_t extract_data = 0;

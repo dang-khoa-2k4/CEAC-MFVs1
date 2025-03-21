@@ -5,6 +5,7 @@
 
 typedef enum
 {
+    INIT_BLE,
     SLEEPING,
     WAKEUP
 } MODE_BLE;

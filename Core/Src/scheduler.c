@@ -121,7 +121,6 @@ void Scheduler_Dispatch_Tasks()
         (*(tasks.currentTask->pTask))(); // Run the task
         tasks.currentTask->runMe = 0;    // Reset / reduce RunMe flag
         TaskNode temtask = *(tasks.currentTask);
-
         if (Scheduler_Remove_Task(temtask.TaskID) && temtask.period > 0)
         {
             preTaskID = temtask.TaskID;

@@ -20,6 +20,8 @@
 #define SET_NAME 5        // Set module name
 #define SET_ADDR 6        // Set module address
 #define CHECK_CONNECT 7   // Check connection status
+#define SET_SLEEP 8
+#define SET_WAKEUP 9
 
 #define MODE_DIR 8
 #define MODE_ACTION 16
@@ -37,7 +39,7 @@
 #define CTRL_CROSS 0x10 << MODE_ACTION
 #define CTRL_SQUARE 0x20 << MODE_ACTION
 
-#define NO_OF_COMMANDS 8 // Number of commands
+#define NO_OF_COMMANDS 10 // Number of commands
 // Structure for HC-08 communication
 typedef struct
 {

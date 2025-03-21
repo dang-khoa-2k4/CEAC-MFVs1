@@ -11,8 +11,10 @@ typedef enum
 } MODE_LINE;
 
 extern MODE_LINE line_algo;
+extern uint16_t threshold;
 
 uint8_t line_init();
 void line_run();
+void update_threshold();
 
 #endif 

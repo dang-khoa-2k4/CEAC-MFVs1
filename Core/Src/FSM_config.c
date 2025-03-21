@@ -1,10 +1,29 @@
 #include "FSM_config.h"
 
 MODE_CONFIG config_state;
+static uint8_t btn_config_state = BUTTON_RELEASED;
 
-static void handle_button_press(void)
+static void handle_config_btn(void)
 {
-
+    if (!is_button_pressed(MODE_BUTTON) 
+    && btn_config_state == BUTTON_PRESSED)
+    {
+        btn_config_state = BUTTON_RELEASED;
+        switch (config_state)
+        {
+            case TEST_HW:
+                config_state = SETUP_SERVO;
+                break;
+            case SETUP_SERVO:
+                config_state = SETUP_COLOR;
+                break;
+            case SETUP_COLOR:
+                config_state = TEST_HW;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 static void test_hw()
@@ -53,7 +72,25 @@ static void servo_setup()
 
 static void color_setup()
 {
+    uint16_t black, white;
+    eeprom_read(EEPROM_BLACK, &black);
+    eeprom_read(EEPROM_WHITE, &white);
 
+    if (is_button_pressed(SET_WHITE))
+    {
+        white = ir.data[0];
+    }
+    else if (is_button_pressed(SET_BLACK))
+    {
+        black = ir.data[0];
+    }
+    else if (is_button_pressed(SET_SAVE))
+    {
+        // save color
+        eeprom_write(EEPROM_BLACK, &black);
+        eeprom_write(EEPROM_WHITE, &white);
+        update_threshold();
+    }
 }
 
 uint8_t config_init()
@@ -63,6 +100,10 @@ uint8_t config_init()
 
 void fsm_config_run()
 {
+    if (is_button_pressed(MODE_BUTTON))
+    {
+        btn_config_state = BUTTON_PRESSED;
+    }
     switch (config_state)
     {
         case INIT_CONFIG:
@@ -84,6 +125,6 @@ void fsm_config_run()
         default:
             break;
     }
-    handle_button_press();
+    handle_config_btn();
 }
 

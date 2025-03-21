@@ -10,7 +10,10 @@ typedef enum
 
 #define EEPROM_BEGIN 0x08080000
 #define EEPROM_SIZE 10
+
 #define EEPROM_SERVO 0
+#define EEPROM_BLACK 1
+#define EEPROM_WHITE 2
 
 void eeprom_init(uint32_t begin, uint16_t size);
 uint32_t get_eeprom_size();

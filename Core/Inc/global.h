@@ -33,6 +33,7 @@
 // #define TEST_ENCODER
 // #define TEST_BTN
 // #define TEST_SW
+extern uint8_t sSeg_data[NUMS_OF_SEG];
 
 void init_system(void);
 
